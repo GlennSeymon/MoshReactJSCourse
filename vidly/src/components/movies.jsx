@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getMovies } from "../services/fakeMovieService";
+import { getMovies, deleteMovie } from "../services/fakeMovieService";
 
 class Movies extends Component {
   constructor() {
@@ -12,15 +12,18 @@ class Movies extends Component {
   };
 
   handleDelete = (movie) => {
-    console.log("Deleting row ");
+    console.log("Deleting row ", movie);
+    const newMovies = this.state.movies.filter((m) => m._id !== movie._id);
+    this.setState({ movies: newMovies });
   };
 
   render() {
-    return (
-      //      <div>Showing {this.state.movies.length} movies in the database</div>
-      //    {this.state.movies.length === 0 && "There are no movies"}
+    const { length: movieCount } = this.state.movies;
+    if (movieCount === 0) return <p>There are no movies in the database</p>;
 
-      <div>
+    return (
+      <React.Fragment>
+        <p>There are {movieCount} movies in the database.</p>
         <table className="table">
           <thead className="table-light">
             <tr>
@@ -33,7 +36,7 @@ class Movies extends Component {
           </thead>
           <tbody>
             {this.state.movies.map((movie) => (
-              <tr>
+              <tr key={movie._id}>
                 <td>{movie.title}</td>
                 <td>{movie.genre.name}</td>
                 <td>{movie.numberInStock}</td>
@@ -41,8 +44,8 @@ class Movies extends Component {
                 <td>
                   <button
                     type="button"
-                    className="btn btn-danger"
-                    onClick={this.handleDelete(movie)}
+                    className="btn btn-danger btn-sm"
+                    onClick={() => this.handleDelete(movie)}
                   >
                     Delete
                   </button>
@@ -51,7 +54,7 @@ class Movies extends Component {
             ))}
           </tbody>
         </table>
-      </div>
+      </React.Fragment>
     );
   }
 }
