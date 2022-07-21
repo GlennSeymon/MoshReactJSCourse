@@ -21,8 +21,8 @@ class Movies extends Component {
       //    {this.state.movies.length === 0 && "There are no movies"}
 
       <div>
-        <table className={"table"}>
-          <thead className={"table-light"}>
+        <table className="table">
+          <thead className="table-light">
             <tr>
               <th>Title</th>
               <th>Genre</th>
@@ -40,8 +40,8 @@ class Movies extends Component {
                 <td>{movie.dailyRentalRate}</td>
                 <td>
                   <button
-                    type={"button"}
-                    className={"btn btn-danger"}
+                    type="button"
+                    className="btn btn-danger"
                     onClick={this.handleDelete(movie)}
                   >
                     Delete
