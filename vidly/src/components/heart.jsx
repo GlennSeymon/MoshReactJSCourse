@@ -5,24 +5,17 @@ class Heart extends Component {
     const { onLike, movie } = this.props;
 
     return (
-      <div>
-        <button onClick={() => onLike(movie)}>
-          {movie.like === true ? "Unlike" : "Like"}
-        </button>
-
-        <i
-          className="fa-regular fa-heart-circle-check"
-          onClick={() => onLike(movie)}
-        >
-          <b>Hello</b>
-        </i>
-      </div>
+      <i
+        className={this.getClasses(movie)}
+        aria-hidden="true"
+        onClick={() => onLike(movie)}
+      ></i>
     );
   }
 
   getClasses(movie) {
-    let classes = "fa-solid fa-heart-circle-check";
-    //classes += movie.like === true ? "check" : "xmark";
+    let classes = "fa fa-heart";
+    classes += movie.like === false ? "-o" : "";
     return classes;
   }
 }
