@@ -6,7 +6,6 @@ class Pagination extends Component {
   state = {};
   render() {
     const { movies, moviesPerPage, onPageChange, currentPage } = this.props;
-    console.log("currentPage: ", currentPage);
 
     let pages = Math.ceil(movies.length / moviesPerPage);
     if (pages === 1) return null;
