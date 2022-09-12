@@ -2,13 +2,13 @@ import React, { Component } from "react";
 
 class Heart extends Component {
   render() {
-    const { onLike, movie } = this.props;
+    const { onClick, movie } = this.props;
 
     return (
       <i
         className={this.getClasses(movie)}
         aria-hidden="true"
-        onClick={() => onLike(movie)}
+        onClick={() => onClick(movie)}
       ></i>
     );
   }
